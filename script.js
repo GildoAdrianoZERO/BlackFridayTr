@@ -1,94 +1,82 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", function() {
 
-    // --- Funcionalidade do Contador Regressivo ---
-    const countdown = () => {
-        // A data final da Black Friday para 2025 é 28 de Novembro.
-        const endDate = new Date('November 28, 2025 23:59:59').getTime();
-        const now = new Date().getTime();
-        const difference = endDate - now;
+    // Carrega a biblioteca de confetes de um CDN
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js';
+    document.head.appendChild(script);
 
-        if (difference < 0) {
-            document.getElementById('days').innerText = '00';
-            document.getElementById('hours').innerText = '00';
-            document.getElementById('minutes').innerText = '00';
-            document.getElementById('seconds').innerText = '00';
-            return;
+    script.onload = () => {
+        // Pega a referência para o canvas
+        const canvas = document.getElementById('confetti-canvas');
+        if (!canvas) return;
+
+        // Cria uma instância de confete usando o canvas
+        const myConfetti = confetti.create(canvas, {
+            resize: true,
+            useWorker: true
+        });
+
+        // Configurações para o efeito de queda
+        const defaults = {
+            spread: 360,
+            ticks: 500,
+            gravity: 0.5,
+            decay: 0.94,
+            startVelocity: 30,
+            particleCount: 50,
+            scalar: 1.2,
+            colors: ['#ffc107', '#000000', '#ffffff'] // Amarelo, Preto, Branco
+        };
+
+        function fire(particleRatio, opts) {
+            myConfetti({
+                ...defaults,
+                ...opts,
+                particleCount: Math.floor(250 * particleRatio)
+            });
         }
+        
+        // Dispara os confetes automaticamente ao carregar a página
+        fire(0.25, {
+            spread: 26,
+            startVelocity: 55,
+        });
 
-        const seconds = 1000, minutes = seconds * 60, hours = minutes * 60, days = hours * 24;
+        fire(0.2, {
+            spread: 60,
+        });
 
-        let timeDays = Math.floor(difference / days);
-        let timeHours = Math.floor((difference % days) / hours);
-        let timeMinutes = Math.floor((difference % hours) / minutes);
-        let timeSeconds = Math.floor((difference % minutes) / seconds);
+        fire(0.35, {
+            spread: 100,
+            decay: 0.91,
+            scalar: 0.8
+        });
 
-        timeDays = timeDays < 10 ? '0' + timeDays : timeDays;
-        timeHours = timeHours < 10 ? '0' + timeHours : timeHours;
-        timeMinutes = timeMinutes < 10 ? '0' + timeMinutes : timeMinutes;
-        timeSeconds = timeSeconds < 10 ? '0' + timeSeconds : timeSeconds;
+        fire(0.1, {
+            spread: 120,
+            startVelocity: 25,
+            decay: 0.92,
+            scalar: 1.2
+        });
 
-        document.getElementById('days').innerText = timeDays;
-        document.getElementById('hours').innerText = timeHours;
-        document.getElementById('minutes').innerText = timeMinutes;
-        document.getElementById('seconds').innerText = timeSeconds;
-    };
-    setInterval(countdown, 1000);
-    countdown();
+        fire(0.1, {
+            spread: 120,
+            startVelocity: 45,
+        });
 
-    // --- Animação de Confetes ---
-    const confettiContainer = document.getElementById('confetti-container');
-    const confettiCount = 50;
-    const createConfetti = () => {
-        for (let i = 0; i < confettiCount; i++) {
-            const confetti = document.createElement('div');
-            confetti.classList.add('confetti');
-            confetti.style.left = `${Math.random() * 100}vw`;
-            confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
-            confetti.style.animationDelay = `${Math.random() * 5}s`;
-            
-            if (Math.random() > 0.5) {
-                confetti.style.width = '15px';
-                confetti.style.height = '8px';
-                confetti.style.borderRadius = '0';
-            }
-            confettiContainer.appendChild(confetti);
+        // Adiciona um gatilho de confetes ao clicar no botão CTA
+        const ctaButton = document.querySelector('.cta-button');
+        if (ctaButton) {
+            ctaButton.addEventListener('click', (e) => {
+                myConfetti({
+                    particleCount: 200,
+                    spread: 180,
+                    origin: {
+                        y: 0.6
+                    },
+                    colors: ['#ffc107', '#000000', '#ffffff']
+                });
+            });
         }
     };
-    createConfetti();
-
-    // --- Inicialização do Carrossel de Produtos ---
-    const swiper = new Swiper('.product-carousel', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        
-        // CONFIGURAÇÃO DE AUTOPLAY
-        autoplay: {
-            delay: 2500, // Tempo em milissegundos (2.5 segundos)
-            disableOnInteraction: false, // Não para o autoplay após interação manual
-            pauseOnMouseEnter: true, // Pausa o autoplay quando o mouse está sobre o carrossel
-        },
-        
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-            },
-            1024: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-            }
-        },
-
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
-
 });

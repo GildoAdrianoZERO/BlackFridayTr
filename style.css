@@ -1,329 +1,232 @@
-/* --- Reset Básico e Variáveis --- */
 :root {
-    --black: #000000;
-    --gold: #FFD700;
-    --light-gold: #ffee9b;
-    --dark-gray: #1a1a1a;
-    --text-color: #f4f4f4;
-    --font-title: 'Anton', sans-serif;
-    --font-body: 'Roboto', sans-serif;
-    /* Variáveis para customizar o carrossel */
-    --swiper-navigation-color: var(--gold);
-    --swiper-pagination-color: var(--gold);
+    --black: #0d0d0d;
+    --yellow: #ffc107;
+    --dark-yellow: #e0ac00;
+    /* --light-grey: #e6e6e6; -- Não será mais usado para o fundo geral */
 }
 
+/* Base e Estilos Gerais */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background-color: var(--black);
-    color: var(--text-color);
-    font-family: var(--font-body);
+html, body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background-color: var(--black); /* Fundo totalmente preto */
     overflow-x: hidden;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* Faixa de Sinalização */
+.tape-top, .tape-bottom {
+    width: 200%;
+    height: 60px;
+    background-image: linear-gradient(
+        45deg, 
+        transparent 25%, 
+        var(--yellow) 25%, 
+        var(--yellow) 50%, 
+        transparent 50%, 
+        transparent 75%, 
+        var(--yellow) 75%, 
+        var(--yellow)
+    );
+    background-size: 60px 60px;
+    position: fixed;
+    left: 0;
+    z-index: 5;
+    animation: slideTape 20s infinite linear;
+}
+
+.tape-top {
+    top: 0;
+}
+
+.tape-bottom {
+    bottom: 0;
+    transform: rotate(180deg);
+}
+
+.tape-text {
+    font-size: 1.2rem;
+    color: var(--black);
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
     padding: 0 20px;
 }
 
-section {
-    padding: 80px 0;
+.tape-bottom .tape-text {
+    transform: translateY(-50%) rotate(180deg);
 }
 
-h2 {
-    font-family: var(--font-title);
-    color: var(--gold);
-    font-size: 2.5rem;
+/* Seção Hero e Conteúdo */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 80px 20px;
     text-align: center;
-    margin-bottom: 40px;
-    letter-spacing: 2px;
+    background-color: var(--black); /* Garante que esta seção também seja preta */
+    margin: 0; /* Remove a margem superior e inferior que criava as "bordas" cinzas */
 }
 
-/* --- Animação de Confete --- */
-#confetti-container {
+.logo-container {
+    position: absolute;
+    top: 80px;
+    left: 80px;
+    z-index: 10;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.main-content-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.main-title {
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--yellow);
+    text-transform: uppercase;
+    
+    /* Efeito 3D com text-shadow */
+    text-shadow: 
+        -2px -2px 0 var(--dark-yellow), 
+        -4px -4px 0 var(--dark-yellow),
+        -6px -6px 0 var(--dark-yellow),
+        -8px -8px 0 var(--dark-yellow);
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.campaign-image {
+    width: 350px;
+    max-width: 90%;
+    filter: drop-shadow(0 0 15px rgba(255, 193, 7, 0.5));
+    animation: glow 3s infinite alternate;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    max-width: 500px;
+    color: var(--dark-yellow);
+    padding: 10px 20px;
+    text-transform: uppercase;
+}
+
+/* Botão CTA */
+.cta-button {
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding: 18px 40px;
+    background-color: var(--yellow);
+    color: var(--black);
+    text-decoration: none;
+    border-radius: 50px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 8px 15px rgba(255, 193, 7, 0.4);
+    z-index: 2;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 20px rgba(255, 193, 7, 0.6);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 60px 10px;
+    }
+    
+    .logo-container {
+        top: 20px;
+        left: 20px;
+    }
+    
+    .logo {
+        width: 80px;
+    }
+
+    .main-title {
+        font-size: 3rem;
+        text-shadow: 
+            -1px -1px 0 var(--dark-yellow), 
+            -2px -2px 0 var(--dark-yellow),
+            -3px -3px 0 var(--dark-yellow);
+    }
+
+    .campaign-image {
+        width: 250px;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        padding: 8px 15px;
+    }
+
+    .cta-button {
+        font-size: 1.2rem;
+        padding: 15px 30px;
+    }
+
+    .tape-top, .tape-bottom {
+        height: 40px;
+    }
+}
+
+/* Animações */
+@keyframes slideTape {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+}
+
+.tape-bottom {
+    animation: slideTape 20s infinite linear reverse;
+}
+
+/* Adicione ou atualize esta regra no seu style.css */
+#confetti-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    z-index: 999;
+    pointer-events: none; /* Permite clicar nos elementos por trás do canvas */
+    z-index: 2; /* Fica acima das faixas e abaixo do conteúdo principal */
 }
 
-.confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: var(--gold);
-    opacity: 0.8;
-    animation: fall 5s linear infinite;
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
 }
 
-@keyframes fall {
-    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
-}
-
-/* --- Seção Hero --- */
-.hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 60vh;
-    padding: 40px 0;
-}
-
-.hero h1 {
-    font-family: var(--font-title);
-    font-size: 7rem;
-    color: var(--gold);
-    line-height: 1;
-    letter-spacing: 4px;
-}
-
-.hero h2 {
-    font-family: var(--font-title);
-    font-size: 3rem;
-    color: var(--gold);
-    background-color: var(--black);
-    padding: 5px 15px;
-    margin-top: 10px;
-    letter-spacing: 2px;
-}
-
-.hero .company-name {
-    margin-top: 30px;
-    font-size: 1.5rem;
-    color: var(--text-color);
-    letter-spacing: 1px;
-}
-
-/* --- Seção de Vídeo --- */
-.video-section {
-    padding-top: 40px;
-}
-
-.video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background: #000;
-    border: 3px solid var(--gold);
-    border-radius: 10px;
-}
-
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/* --- Seção de Contagem Regressiva --- */
-.countdown-section {
-    background-color: var(--dark-gray);
-}
-
-.timer {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    text-align: center;
-}
-
-.time-box {
-    background-color: var(--black);
-    padding: 20px;
-    border-radius: 10px;
-    min-width: 100px;
-    border: 2px solid var(--gold);
-}
-
-.time-box span {
-    display: block;
-    font-family: var(--font-title);
-    font-size: 3rem;
-    color: var(--gold);
-}
-
-.time-box p {
-    font-size: 1rem;
-    color: var(--text-color);
-    margin-top: 5px;
-}
-
-/* --- Seção de Ofertas (Carrossel) --- */
-.offers-section .container {
-    position: relative;
-}
-
-.product-carousel {
-    width: 100%;
-    height: 100%;
-    padding: 20px 0 50px 0;
-}
-
-.swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-}
-
-.product-card {
-    background-color: var(--dark-gray);
-    border: 1px solid #222;
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.1);
-}
-
-.product-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.product-card h3 {
-    font-size: 1.5rem;
-    margin: 20px 10px 10px 10px;
-    color: var(--text-color);
-    flex-grow: 1;
-}
-
-.product-card .price-original {
-    text-decoration: line-through;
-    color: #888;
-    font-size: 1rem;
-}
-
-.product-card .price-discounted {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--gold);
-    margin: 5px 0 20px;
-}
-
-.cta-button {
-    display: inline-block;
-    background-color: var(--gold);
-    color: var(--black);
-    border: none;
-    padding: 12px 25px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 5px;
-    margin: 0 20px 20px 20px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.cta-button:hover {
-    background-color: var(--light-gold);
-    transform: scale(1.05);
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-    top: 50%;
-    transform: translateY(-70%);
-}
-
-.swiper-button-prev { left: -10px; }
-.swiper-button-next { right: -10px; }
-.swiper-pagination-bullet-active { background: var(--gold); }
-
-/* --- Seção do Grupo de WhatsApp --- */
-.whatsapp-group-section {
-    background-color: var(--dark-gray);
-    text-align: center;
-}
-
-.whatsapp-group-section h3 {
-    font-size: 1.8rem;
-    font-family: var(--font-body);
-    font-weight: 400;
-    max-width: 600px;
-    margin: 0 auto 30px auto;
-    line-height: 1.6;
-}
-
-.large-button {
-    padding: 15px 40px;
-    font-size: 1.2rem;
-    transform-origin: center;
-}
-
-/* --- Footer --- */
-footer {
-    text-align: center;
-    padding: 40px 0;
-    border-top: 1px solid var(--dark-gray);
-}
-
-.social-icons a {
-    color: var(--text-color);
-    font-size: 1.8rem;
-    margin: 0 15px;
-    transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-    color: var(--gold);
-}
-
-footer p {
-    margin-top: 20px;
-    font-size: 0.9rem;
-    color: #888;
-}
-
-/* --- Responsividade --- */
-@media (max-width: 768px) {
-    .hero h1 { font-size: 5rem; }
-    .hero h2 { font-size: 2rem; }
-    h2 { font-size: 2rem; }
-    .timer { flex-wrap: wrap; gap: 15px; }
-    .time-box { min-width: 80px; padding: 15px; }
-    .time-box span { font-size: 2rem; }
-    .swiper-button-prev,
-    .swiper-button-next { display: none; }
-}
-
-@media (max-width: 480px) {
-    section { padding: 50px 0; }
-    .hero h1 { font-size: 3.2rem; letter-spacing: 2px; }
-    .hero h2 { font-size: 1.4rem; }
-    .timer { gap: 10px; }
-    .time-box { flex-basis: calc(50% - 10px); padding: 10px; min-width: 70px; }
-    .product-card h3 { font-size: 1.3rem; }
-    .product-card .price-discounted { font-size: 1.6rem; }
-    .whatsapp-group-section h3 { font-size: 1.4rem; }
+@keyframes glow {
+    0% { filter: drop-shadow(0 0 15px rgba(255, 193, 7, 0.5)); }
+    100% { filter: drop-shadow(0 0 25px rgba(255, 193, 7, 0.8)); }
 }
