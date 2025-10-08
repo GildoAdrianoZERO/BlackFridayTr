@@ -1,232 +1,244 @@
-:root {
-    --black: #0d0d0d;
-    --yellow: #ffc107;
-    --dark-yellow: #e0ac00;
-    /* --light-grey: #e6e6e6; -- Não será mais usado para o fundo geral */
-}
+/* --- Paleta de cores original restaurada --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
 
-/* Base e Estilos Gerais */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html, body {
-    height: 100%;
+/* --- Estilos Globais --- */
+body {
+    background-color: #121212;
+    color: #ffffff;
     font-family: 'Poppins', sans-serif;
-    color: #fff;
-    background-color: var(--black); /* Fundo totalmente preto */
-    overflow-x: hidden;
-}
-
-/* Faixa de Sinalização */
-.tape-top, .tape-bottom {
-    width: 200%;
-    height: 60px;
-    background-image: linear-gradient(
-        45deg, 
-        transparent 25%, 
-        var(--yellow) 25%, 
-        var(--yellow) 50%, 
-        transparent 50%, 
-        transparent 75%, 
-        var(--yellow) 75%, 
-        var(--yellow)
-    );
-    background-size: 60px 60px;
-    position: fixed;
-    left: 0;
-    z-index: 5;
-    animation: slideTape 20s infinite linear;
-}
-
-.tape-top {
-    top: 0;
-}
-
-.tape-bottom {
-    bottom: 0;
-    transform: rotate(180deg);
-}
-
-.tape-text {
-    font-size: 1.2rem;
-    color: var(--black);
-    font-weight: bold;
-    text-transform: uppercase;
-    white-space: nowrap;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    display: inline-block;
-    padding: 0 20px;
-}
-
-.tape-bottom .tape-text {
-    transform: translateY(-50%) rotate(180deg);
-}
-
-/* Seção Hero e Conteúdo */
-.hero-section {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 80px 20px;
-    text-align: center;
-    background-color: var(--black); /* Garante que esta seção também seja preta */
-    margin: 0; /* Remove a margem superior e inferior que criava as "bordas" cinzas */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.logo-container {
-    position: absolute;
-    top: 80px;
-    left: 80px;
-    z-index: 10;
-}
-
-.logo {
-    width: 100px;
-    height: auto;
-}
-
-.main-content-block {
+/* --- Container Principal --- */
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    max-width: 600px;
+    text-align: center;
+    max-width: 500px;
     width: 100%;
 }
 
-.main-title {
-    font-size: 5rem;
-    font-weight: 900;
-    line-height: 0.9;
-    color: var(--yellow);
-    text-transform: uppercase;
-    
-    /* Efeito 3D com text-shadow */
-    text-shadow: 
-        -2px -2px 0 var(--dark-yellow), 
-        -4px -4px 0 var(--dark-yellow),
-        -6px -6px 0 var(--dark-yellow),
-        -8px -8px 0 var(--dark-yellow);
-    animation: pulse 2s infinite ease-in-out;
+/* --- Logo e Nome da Empresa --- */
+.logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
 }
 
-.campaign-image {
-    width: 350px;
-    max-width: 90%;
-    filter: drop-shadow(0 0 15px rgba(255, 193, 7, 0.5));
-    animation: glow 3s infinite alternate;
+.company-name {
+    color: #FFD700; /* Cor restaurada */
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
 }
 
-.subtitle {
-    font-size: 1.5rem;
-    font-weight: 500;
-    max-width: 500px;
-    color: var(--dark-yellow);
-    padding: 10px 20px;
-    text-transform: uppercase;
+/* --- Caixa da Promoção --- */
+.promo-box {
+    background-color: #1f1f1f;
+    border: 2px solid #FFD700; /* Cor restaurada */
+    border-radius: 15px;
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); /* Cor restaurada */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    animation: glow-promo-box 3s infinite ease-in-out;
 }
 
-/* Botão CTA */
-.cta-button {
-    font-size: 1.5rem;
-    font-weight: 800;
-    padding: 18px 40px;
-    background-color: var(--yellow);
-    color: var(--black);
-    text-decoration: none;
+.badge {
+    background-color: #dc3545; /* Cor restaurada */
+    color: white;
+    padding: 0.5rem 1rem;
     border-radius: 50px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    box-shadow: 0 8px 15px rgba(255, 193, 7, 0.4);
-    z-index: 2;
-    animation: pulse 2s infinite ease-in-out;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.promo-box h1 {
+    color: #dc3545; /* Cor restaurada */
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.promo-box h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: -1rem 0 0 0;
+}
+
+.promo-box .description {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+}
+
+/* --- Contador --- */
+.countdown-container p {
+    font-size: 0.9em;
+    color: #c0c0c0;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.countdown-item {
+    background-color: #333;
+    padding: 0.5rem;
+    border-radius: 5px;
+    width: 60px;
+    border: 1px solid #FFD700; /* Cor restaurada */
+}
+
+.countdown-item .number {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.countdown-item .label {
+    font-size: 0.7rem;
+    color: #a0a0a0;
+    text-transform: uppercase;
+}
+
+/* --- Caixa de Atenção --- */
+.attention-box {
+    background-color: rgba(220, 53, 69, 0.1); /* Cor restaurada */
+    border: 1px solid #dc3545; /* Cor restaurada */
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.attention-box strong {
+    color: #FFD700; /* Cor restaurada */
+}
+
+/* --- Lista de Benefícios --- */
+.benefits {
+    text-align: left;
+    width: 100%;
+}
+
+.benefits h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: table;
+}
+
+.benefits ul li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+/* --- Botão Principal (CTA) --- */
+.cta-button {
+    background: linear-gradient(45deg, #FFD700, #FFA500); /* Cor restaurada */
+    color: #121212; /* Cor restaurada */
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    animation: pulse-cta 2s infinite ease-in-out;
 }
 
 .cta-button:hover {
     transform: scale(1.05);
-    box-shadow: 0 12px 20px rgba(255, 193, 7, 0.6);
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.6); /* Cor restaurada */
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .hero-section {
-        padding: 60px 10px;
+/* --- Rodapé --- */
+footer {
+    margin-top: 1.5rem;
+}
+
+.footer-text {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.footer-text.small {
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #a0a0a0;
+}
+
+/* --- DEFINIÇÕES DAS ANIMAÇÕES (@keyframes) --- */
+@keyframes pulse-cta {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 165, 0, 0.7); } /* Cor restaurada */
+    70% { transform: scale(1.02); box-shadow: 0 0 15px rgba(255, 165, 0, 0.7); } /* Cor restaurada */
+    100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 165, 0, 0.7); } /* Cor restaurada */
+}
+
+@keyframes glow-promo-box {
+    0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); } /* Cor restaurada */
+    50% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.8); } /* Cor restaurada */
+    100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); } /* Cor restaurada */
+}
+
+/* --- Otimizações para Celular (Telas com largura máxima de 480px) --- */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .promo-box {
+        padding: 1.5rem 1rem;
+    }
+
+    .promo-box h1 {
+        font-size: 2rem;
+    }
+
+    .promo-box h2 {
+        font-size: 1.3rem;
+    }
+
+    .countdown-item {
+        width: auto;
+        flex-grow: 1;
+        padding: 0.5rem 0.2rem;
     }
     
-    .logo-container {
-        top: 20px;
-        left: 20px;
-    }
-    
-    .logo {
-        width: 80px;
-    }
-
-    .main-title {
-        font-size: 3rem;
-        text-shadow: 
-            -1px -1px 0 var(--dark-yellow), 
-            -2px -2px 0 var(--dark-yellow),
-            -3px -3px 0 var(--dark-yellow);
-    }
-
-    .campaign-image {
-        width: 250px;
-    }
-
-    .subtitle {
-        font-size: 1.2rem;
-        padding: 8px 15px;
+    .countdown-item .number {
+        font-size: 1.6rem;
     }
 
     .cta-button {
-        font-size: 1.2rem;
-        padding: 15px 30px;
+        font-size: 1rem;
+        padding: 1rem 1.5rem;
     }
-
-    .tape-top, .tape-bottom {
-        height: 40px;
-    }
-}
-
-/* Animações */
-@keyframes slideTape {
-    0% {
-        transform: translateX(0) rotate(0deg);
-    }
-    100% {
-        transform: translateX(-50%) rotate(0deg);
-    }
-}
-
-.tape-bottom {
-    animation: slideTape 20s infinite linear reverse;
-}
-
-/* Adicione ou atualize esta regra no seu style.css */
-#confetti-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Permite clicar nos elementos por trás do canvas */
-    z-index: 2; /* Fica acima das faixas e abaixo do conteúdo principal */
-}
-
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
-}
-
-@keyframes glow {
-    0% { filter: drop-shadow(0 0 15px rgba(255, 193, 7, 0.5)); }
-    100% { filter: drop-shadow(0 0 25px rgba(255, 193, 7, 0.8)); }
 }
