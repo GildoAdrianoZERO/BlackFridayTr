@@ -1,10 +1,10 @@
 // ===================================================================
-//  CONFIGURAÇÃO DO CRONÔMETRO PARA DATA FIXA
+//          CONFIGURAÇÃO DO CRONÔMETRO PARA DATA FIXA
 // ===================================================================
 const targetTimestamp = new Date('2025-10-13T00:00:00-03:00').getTime();
 
 // ===================================================================
-//  ELEMENTOS DO HTML
+//                     ELEMENTOS DO HTML
 // ===================================================================
 const daysEl = document.getElementById('days');
 const hoursEl = document.getElementById('hours');
@@ -13,20 +13,19 @@ const secondsEl = document.getElementById('seconds');
 const countdownContainer = document.querySelector('.countdown-container');
 
 // ===================================================================
-//  FUNÇÃO DOS CONFETES
+//                     FUNÇÃO DOS CONFETES
 // ===================================================================
 function triggerConfetti() {
-    // Verifica se a função 'confetti' existe antes de chamar
     if (typeof confetti !== 'function') {
         console.error("A biblioteca de confetes não foi carregada.");
         return;
     }
 
-    const duration = 3 * 1000; // A animação dura 3 segundos
+    const duration = 4 * 1000; // A animação dura 3 segundos
     const end = Date.now() + duration;
 
     // Defina suas cores personalizadas aqui (Amarelo Dourado e Preto)
-    // Você pode adicionar mais cores se quiser, por exemplo: ['#FFD700', '#000000', '#FF4500']
+
     const customColors = ['#FFD700', '#000000']; 
 
     (function frame() {
@@ -35,14 +34,14 @@ function triggerConfetti() {
             angle: 60, 
             spread: 55, 
             origin: { x: 0 },
-            colors: customColors // Usando as cores personalizadas
+            colors: customColors 
         });
         confetti({ 
             particleCount: 2, 
             angle: 120, 
             spread: 55, 
             origin: { x: 1 },
-            colors: customColors // Usando as cores personalizadas
+            colors: customColors 
         });
 
         if (Date.now() < end) {
@@ -52,7 +51,7 @@ function triggerConfetti() {
 }
 
 // ===================================================================
-//  LÓGICA PRINCIPAL DO CRONÔMETRO
+//               LÓGICA PRINCIPAL DO CRONÔMETRO
 // ===================================================================
 
 const now = new Date().getTime();
