@@ -173,7 +173,7 @@ body {
     font-size: 1.1rem;
     padding: 1rem 2rem;
     border-radius: 8px;
-    text-decoration: none;
+    text-decoration: none;  
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
