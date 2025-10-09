@@ -1,10 +1,20 @@
-/* --- Paleta de cores original restaurada --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
+/* --- Paleta de cores com variáveis --- */
+:root {
+  --background-color: #121212;
+  --text-color: #ffffff;
+  --primary-accent: #FFD700;
+  --secondary-accent: #dc3545;
+  --title-red: #ff0019;
+  --box-background: #1f1f1f;
+  --box-background-attention: rgba(220, 53, 69, 0.1);
+  --gray-text: #a0a0a0;
+  --countdown-bg: #333;
+}
 
 /* --- Estilos Globais --- */
 body {
-    background-color: #121212;
-    color: #ffffff;
+    background-color: var(--background-color);
+    color: var(--text-color);
     font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
@@ -25,30 +35,24 @@ body {
     width: 100%;
 }
 
-/* --- Logo e Nome da Empresa --- */
+/* --- Logo --- */
 .logo {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-}
-
-.company-name {
-    color: #FFD700; /* Cor restaurada */
-    font-weight: bold;
-    letter-spacing: 2px;
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
     margin-bottom: 2rem;
 }
 
 /* --- Caixa da Promoção --- */
 .promo-box {
-    background-color: #1f1f1f;
-    border: 2px solid #FFD700; /* Cor restaurada */
+    background-color: var(--box-background);
+    border: 2px solid var(--primary-accent);
     border-radius: 15px;
     padding: 2rem;
     width: 100%;
     box-sizing: border-box;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); /* Cor restaurada */
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,7 +61,7 @@ body {
 }
 
 .badge {
-    background-color: #dc3545; /* Cor restaurada */
+    background-color: var(--secondary-accent);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 50px;
@@ -66,11 +70,16 @@ body {
 }
 
 .promo-box h1 {
-    color: #dc3545; /* Cor restaurada */
     font-size: 2.5rem;
     font-weight: 900;
     margin: 0;
     line-height: 1.1;
+    background: linear-gradient(90deg, var(--title-red), var(--primary-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.7), 0 0 15px rgba(255, 0, 25, 0.5);
+    animation: pulse-text 3s infinite ease-in-out;
+    
 }
 
 .promo-box h2 {
@@ -81,13 +90,13 @@ body {
 
 .promo-box .description {
     font-size: 0.9rem;
-    color: #a0a0a0;
+    color: var(--gray-text);
 }
 
 /* --- Contador --- */
 .countdown-container p {
     font-size: 0.9em;
-    color: #c0c0c0;
+    color: var(--gray-text);
     margin-bottom: 0.5rem;
     font-weight: bold;
 }
@@ -99,11 +108,11 @@ body {
 }
 
 .countdown-item {
-    background-color: #333;
+    background-color: var(--countdown-bg);
     padding: 0.5rem;
     border-radius: 5px;
     width: 60px;
-    border: 1px solid #FFD700; /* Cor restaurada */
+    border: 1px solid var(--primary-accent);
 }
 
 .countdown-item .number {
@@ -114,14 +123,14 @@ body {
 
 .countdown-item .label {
     font-size: 0.7rem;
-    color: #a0a0a0;
+    color: var(--gray-text);
     text-transform: uppercase;
 }
 
 /* --- Caixa de Atenção --- */
 .attention-box {
-    background-color: rgba(220, 53, 69, 0.1); /* Cor restaurada */
-    border: 1px solid #dc3545; /* Cor restaurada */
+    background-color: var(--box-background-attention);
+    border: 1px solid var(--secondary-accent);
     border-radius: 8px;
     padding: 1rem;
     font-size: 0.95rem;
@@ -129,7 +138,7 @@ body {
 }
 
 .attention-box strong {
-    color: #FFD700; /* Cor restaurada */
+    color: var(--primary-accent);
 }
 
 /* --- Lista de Benefícios --- */
@@ -158,8 +167,8 @@ body {
 
 /* --- Botão Principal (CTA) --- */
 .cta-button {
-    background: linear-gradient(45deg, #FFD700, #FFA500); /* Cor restaurada */
-    color: #121212; /* Cor restaurada */
+    background: linear-gradient(45deg, #2ff008, #43fa2b);
+    color: var(--background-color);
     font-weight: bold;
     font-size: 1.1rem;
     padding: 1rem 2rem;
@@ -169,14 +178,15 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 2rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
     border: none;
     animation: pulse-cta 2s infinite ease-in-out;
 }
 
 .cta-button:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(255, 165, 0, 0.6); /* Cor restaurada */
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.6);
+    filter: brightness(1.1);
 }
 
 /* --- Rodapé --- */
@@ -193,52 +203,87 @@ footer {
 .footer-text.small {
     font-size: 0.9rem;
     font-weight: normal;
-    color: #a0a0a0;
+    color: var(--gray-text);
 }
 
-/* --- DEFINIÇÕES DAS ANIMAÇÕES (@keyframes) --- */
+/* --- Animações --- */
 @keyframes pulse-cta {
-    0% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 165, 0, 0.7); } /* Cor restaurada */
-    70% { transform: scale(1.02); box-shadow: 0 0 15px rgba(255, 165, 0, 0.7); } /* Cor restaurada */
-    100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 165, 0, 0.7); } /* Cor restaurada */
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 165, 0, 0.7); }
+    70% { transform: scale(1.02); box-shadow: 0 0 15px rgba(255, 165, 0, 0.7); }
+    100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 165, 0, 0.7); }
 }
 
 @keyframes glow-promo-box {
-    0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); } /* Cor restaurada */
-    50% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.8); } /* Cor restaurada */
-    100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); } /* Cor restaurada */
+    0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+    50% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.8); }
+    100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
 }
 
-/* --- Otimizações para Celular (Telas com largura máxima de 480px) --- */
+@keyframes text-glow {
+    0% {
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.7), 
+                     0 0 10px rgba(255, 0, 25, 0.5);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 1), 
+                     0 0 20px rgba(255, 0, 25, 0.8);
+    }
+}
+
+/* --- Responsividade --- */
 @media (max-width: 480px) {
     body {
         padding: 10px;
     }
-
+    .logo {
+        width: 120px;
+        height: 120px;
+    }
     .promo-box {
         padding: 1.5rem 1rem;
     }
-
     .promo-box h1 {
         font-size: 2rem;
+        /* Reduz o brilho em telas menores para melhor leitura */
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.6), 
+                     0 0 10px rgba(255, 0, 25, 0.4);
     }
-
     .promo-box h2 {
         font-size: 1.3rem;
     }
-
     .countdown-item {
         width: auto;
         flex-grow: 1;
         padding: 0.5rem 0.2rem;
     }
-    
     .countdown-item .number {
         font-size: 1.6rem;
     }
-
     .cta-button {
         font-size: 1rem;
         padding: 1rem 1.5rem;
+    }
+    /* Animação com brilho reduzido para mobile */
+    @keyframes text-glow {
+        0% {
+            text-shadow: 0 0 3px rgba(255, 215, 0, 0.5), 
+                         0 0 7px rgba(255, 0, 25, 0.3);
+        }
+        100% {
+            text-shadow: 0 0 7px rgba(255, 215, 0, 0.8), 
+                         0 0 15px rgba(255, 0, 25, 0.6);
+        }
+    }
+}
+
+@keyframes pulse-text {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05); /* Aumenta o texto em 5% no meio da animação */
+    }
+    100% {
+        transform: scale(1);
     }
 }
