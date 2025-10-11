@@ -21,10 +21,10 @@ function triggerConfetti() {
         return;
     }
 
-    const duration = 4 * 1000; // A animação dura 3 segundos
+    const duration = 4 * 1000; 
     const end = Date.now() + duration;
 
-    // Defina suas cores personalizadas aqui (Amarelo Dourado e Preto)
+    
 
     const customColors = ['#FFD700', '#000000']; 
 
@@ -57,13 +57,13 @@ function triggerConfetti() {
 const now = new Date().getTime();
 const distance = targetTimestamp - now;
 
-// Se a data final já passou (ou é hoje)
+
 if (distance < 0) {
     countdownContainer.innerHTML = "<p style='font-size: 1.2rem; color: #dc3545; font-weight: bold;'>OFERTAS LIBERADAS!</p>";
     
-// Se a data final ainda está no futuro
+
 } else {
-    // Inicia o cronômetro normalmente
+   
     const countdownFunction = setInterval(() => {
         const now_interval = new Date().getTime();
         const distance_interval = targetTimestamp - now_interval;
@@ -71,7 +71,7 @@ if (distance < 0) {
         if (distance_interval < 0) {
             clearInterval(countdownFunction);
             countdownContainer.innerHTML = "<p style='font-size: 1.2rem; color: #dc3545; font-weight: bold;'>OFERTAS LIBERADAS!</p>";
-            // Dispara o confete APENAS quando o cronômetro zera
+            
             triggerConfetti(); 
             return;
         }
@@ -90,7 +90,4 @@ if (distance < 0) {
 }
 
 
-// ===================================================================
-//  NOVO: Dispara os confetes em TODA visita, independentemente do cronômetro.
-// ===================================================================
 triggerConfetti();
